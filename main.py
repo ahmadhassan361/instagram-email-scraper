@@ -4,7 +4,7 @@ import time
 import requests
 BASE_URL = "https://instagram-scraper-2022.p.rapidapi.com/ig"
 headers = {
-	"X-RapidAPI-Key": "",
+	"X-RapidAPI-Key": "eae1b73cb9mshc5dece8c05b7c84p172949jsned39caa145b8",
 	"X-RapidAPI-Host": "instagram-scraper-2022.p.rapidapi.com"
 }
 
@@ -15,18 +15,13 @@ def append_row_to_csv(file_path, row_data):
     mode = "a" if file_exists else "w"
     if mode == "w":
         header = [
-            "UserId",
             "Username",
             "FullName",
             "Followers Count",
-            "Following Count",
-            "Post Count",
             "Public Email",
             "Country Code",
             "Public Phone",
             "Whatsapp Number",
-            "Profile Pic URL",
-            "Profile Visibility",
         ]
         with open(file_path, mode, newline="", encoding="utf-8") as file:
             writer = csv.writer(file)
@@ -94,18 +89,13 @@ for i in followers_list:
     print("run")
     if usr.get('public_email',None) is not None and usr.get('public_email',None) != "":
         temp = [
-                usr.get("pk", ""),
                 usr.get("username", ""),
                 usr.get("full_name", ""),
                 usr.get("follower_count", ""),
-                usr.get("following_count", ""),
-                usr.get("media_count", ""),
                 usr.get("public_email",""),
                 usr.get("public_phone_country_code", ""),
                 usr.get("public_phone_number", ""),
                 usr.get("whatsapp_number", ""),
-                usr.get("profile_pic_url", ""),
-                "No",
             ]
         append_row_to_csv(file_path=file_path,row_data=temp)
 
